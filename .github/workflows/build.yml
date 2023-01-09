@@ -80,7 +80,6 @@ jobs:
     - name: Update & Install feeds
       working-directory: openwrt
       run: |
-        echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
@@ -90,8 +89,8 @@ jobs:
       run: |
         echo CONFIG_DEVEL=y >> .config
         echo CONFIG_AUTOREMOVE=y >> .config
-        echo CONFIG_CCACHE=y >> .config
         echo CONFIG_TARGET_ipq807x=y >> .config
+        echo CONFIG_TARGET_ipq807x_generic_DEVICE_xiaomi_ax3600=y >> .config
         make defconfig
         ./scripts/diffconfig.sh
         make download -j16
